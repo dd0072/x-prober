@@ -2,10 +2,11 @@
 
 namespace InnStudio\Prober\Components\MyInfo;
 
-class MyInfo
+final class MyInfo
 {
     public function __construct()
     {
         new Conf();
+        new ClientLocationIpv4();
     }
 }

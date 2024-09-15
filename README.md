@@ -1,9 +1,9 @@
-[![X Prober preview](screenshot.jpg)](screenshot.jpg)
+[![X Prober preview](screenshots/preview.webp)](screenshots/preview.webp)
 
 - [Simplified Chinese | 简体中文](README-zh_CN.md)
 - [Traditional Chinese(Taiwan) | 正體中文（臺灣）](README-zh_TW.md)
 - [Traditional Chinese(Hong Kong) | 正體中文（香港）](README-zh_HK.md)
-- Japanese | 日本語
+- [Japanese | 日本語](README-jp.md)
 
 # 😎 X Prober
 
@@ -31,8 +31,8 @@ And the most important thing is that it's like 📱 **iPhone X/XS/XS Max/XR/11/1
 
 ## Required environment
 
-- Compile environment: PHP 7.4+
-- Production environment: PHP 5.3+
+- Compile environment: PHP 8.1+
+- Production environment: PHP 5.4+
 - Browser support: Chrome / Firefox / Edge / Android
 - OS support: Linux / Windows(basic features)
 
@@ -42,28 +42,29 @@ And the most important thing is that it's like 📱 **iPhone X/XS/XS Max/XR/11/1
 
 ## Development
 
-- Fork.
+- Fork project.
 - Fetch your project.
 - Install node modules: `$ npm install`.
 - Watch scripts: `$ npm run dev`.
 - Generate composer vendor: `$ composer install; composer dumpautoload -o`.
-- Compile: `$ php ./Make.php dev`.
-- Generate languages: `$ npm run lang` or `node ./build-lang.js` to remake `./languages/lang.pot` language template.
-- Access: `$ php -S localhost:8000 -t ./.tmp`.
+- Compile PHP: `$ npm run dev:php`
+- Access `http://localhost:8000` or `http://path/to/.tmp/index.php`.
+- Generate languages: `$ npm run lang` to remake `./languages/lang.pot` language template and build `*.po`.
 - Enjoy it. 😄
-- Pull Request.
 
 ## Compile production
 
-- Compile: `$ npm run build; php ./Make.php build`.
-- Access: `$ php -S localhost:8000 ./dist/prober.php`.
+- Compile JS: `$ npm run build`.
+- Compile PHP: `$ npm run build:php`.
+- Access: `http://localhost:8000` or `http://path/to/dist/prober.php`.
 
 ## Help and translate more languages
 
-- **Fork** project.
+- Fork project.
 - Fetch your project.
 - Use [Poedit](https://poedit.net/) to create your language from `./languages/lang.pot` language template file and translates it.
 - Save your language file (like: `en_US.po`) into `./languages`.
+- Push your changes.
 - Pull Request and thank you. 😘
 
 ## Note for participate in contribution
@@ -84,7 +85,9 @@ Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com
 
 Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/x-prober#sponsor)]
 
-- Thanks [Vultr.com](https://www.vultr.com/?ref=7256513) - 2019-03-13 - \$50
+- Thanks [VPSPlayer.com](https://vpsplayer.com/aff.php?aff=50) - 2021-01-16 - 199 RMB
+- Thanks 1529\*\*\*576 - 2019-04-04 – 150 RMB
+- Thanks [Vultr.com](https://www.vultr.com/?ref=7256513) - 2019-03-13 - 50 Dollars
 
 <a href="https://opencollective.com/x-prober/sponsor/0/website" target="_blank"><img src="https://opencollective.com/x-prober/sponsor/0/avatar.svg"></a>
 <a href="https://opencollective.com/x-prober/sponsor/1/website" target="_blank"><img src="https://opencollective.com/x-prober/sponsor/1/avatar.svg"></a>

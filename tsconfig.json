@@ -1,20 +1,23 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    // "baseUrl": "src",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "module": "esnext",
     "target": "es6",
     "lib": ["esnext", "dom"],
     "sourceMap": true,
     "allowJs": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "rootDir": "src",
     "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": false,
+    "noImplicitReturns": true,
     "noImplicitThis": false,
     "noImplicitAny": false,
     "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     // "skipLibCheck": true,
     "diagnostics": true,
@@ -24,9 +27,6 @@
     "pretty": true,
     "strict": true,
     "alwaysStrict": true,
-    "paths": {
-      "~components/*": ["Components/*"]
-    },
     "typeRoots": ["../node_modules/@types"],
     "types": ["core-js"],
     "allowSyntheticDefaultImports": true,
@@ -34,14 +34,15 @@
     "emitDecoratorMetadata": true,
     "downlevelIteration": true
   },
-  "include": ["src"],
-  "exclude": [
-    "node_modules",
-    "build",
-    "scripts",
-    "acceptance-tests",
-    "webpack",
-    "jest",
-    "src/setupTests.ts"
-  ]
+  "plugins": [
+    {
+      "name": "typescript-plugin-css-modules",
+      "options": {
+        "customMatcher": "\\.scss$"
+      }
+    }
+  ],
+  "include": ["src/**/*", "*.mjs", "*.scss", "./tools/**/*"],
+  "exclude": ["node_modules", "build", "scripts", "webpack", "jest"],
+  "includes": ["src/scss.d.ts"]
 }

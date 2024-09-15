@@ -6,3 +6,5 @@
 /node_modules
 /.tmp
 /dist/app.js
+/pnpm-lock.yaml
+/*.lock

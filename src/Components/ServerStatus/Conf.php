@@ -3,41 +3,44 @@
 namespace InnStudio\Prober\Components\ServerStatus;
 
 use InnStudio\Prober\Components\Events\EventsApi;
-use InnStudio\Prober\Components\Helper\HelperApi;
+use InnStudio\Prober\Components\Utils\UtilsCpu;
+use InnStudio\Prober\Components\Utils\UtilsMemory;
+use InnStudio\Prober\Components\Xconfig\XconfigApi;
 
-class Conf extends ServerStatusConstants
+final class Conf extends ServerStatusConstants
 {
     public function __construct()
     {
-        EventsApi::on('conf', array($this, 'conf'));
-    }
+        EventsApi::on('conf', function (array $conf) {
+            if (XconfigApi::isDisabled($this->ID)) {
+                return $conf;
+            }
 
-    public function conf(array $conf)
-    {
-        $conf[$this->ID] = array(
-            'sysLoad'      => HelperApi::getSysLoadAvg(),
-            'memRealUsage' => array(
-                'value' => HelperApi::getMemoryUsage('MemRealUsage'),
-                'max'   => HelperApi::getMemoryUsage('MemTotal'),
-            ),
-            'memBuffers' => array(
-                'value' => HelperApi::getMemoryUsage('Buffers'),
-                'max'   => HelperApi::getMemoryUsage('MemUsage'),
-            ),
-            'memCached' => array(
-                'value' => HelperApi::getMemoryUsage('Cached'),
-                'max'   => HelperApi::getMemoryUsage('MemUsage'),
-            ),
-            'swapUsage' => array(
-                'value' => HelperApi::getMemoryUsage('SwapUsage'),
-                'max'   => HelperApi::getMemoryUsage('SwapTotal'),
-            ),
-            'swapCached' => array(
-                'value' => HelperApi::getMemoryUsage('SwapCached'),
-                'max'   => HelperApi::getMemoryUsage('SwapUsage'),
-            ),
-        );
+            $conf[$this->ID] = array(
+                'sysLoad' => UtilsCpu::getLoadAvg(),
+                'memRealUsage' => array(
+                    'value' => UtilsMemory::getMemoryUsage('MemRealUsage'),
+                    'max' => UtilsMemory::getMemoryUsage('MemTotal'),
+                ),
+                'memBuffers' => array(
+                    'value' => UtilsMemory::getMemoryUsage('Buffers'),
+                    'max' => UtilsMemory::getMemoryUsage('MemUsage'),
+                ),
+                'memCached' => array(
+                    'value' => UtilsMemory::getMemoryUsage('Cached'),
+                    'max' => UtilsMemory::getMemoryUsage('MemUsage'),
+                ),
+                'swapUsage' => array(
+                    'value' => UtilsMemory::getMemoryUsage('SwapUsage'),
+                    'max' => UtilsMemory::getMemoryUsage('SwapTotal'),
+                ),
+                'swapCached' => array(
+                    'value' => UtilsMemory::getMemoryUsage('SwapCached'),
+                    'max' => UtilsMemory::getMemoryUsage('SwapUsage'),
+                ),
+            );
 
-        return $conf;
+            return $conf;
+        });
     }
 }
